@@ -10,7 +10,7 @@
   <main id="content" role="main">
     <h1>Gratitude journalling web app</h1>
     <p>Practice gratitude journalling using this web app. Enter what you're grateful for in the text box below, seperating each gratitude with a new line.</p>
-    <div class="hidden" id="error-message"></div>
+    <div class="hidden" id="error-message" role="alert"></div>
     <label for="gratitudes-textarea">What I'm grateful for</label>
     <textarea name="gratitudes-textarea" id="gratitudes-textarea" rows="10"></textarea>
     <div>
@@ -21,10 +21,14 @@
       <p>You have entered the following gratitudes:</p>
       <ul id="confirmation-list">
       </ul>
-      <p>If this is right, click "confirm" below. Otherwise please return back to the text box above and amend your entires.</p>
+      <p>If this is right, click "confirm" below. Otherwise please return back to the text box above and amend your entries.</p>
       <div>
         <button id="confirm-gratitude">Confirm</button>
       </div>
+    </div>
+
+    <div class="hidden" id="submission-complete" role="alert">
+      You've successfully added an entry to your gratitude journal
     </div>
 
     <hr>

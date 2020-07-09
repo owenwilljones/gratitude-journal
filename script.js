@@ -2,9 +2,12 @@ const confContent = document.getElementById('confirmation-content');
 const gratTextarea = document.getElementById('gratitudes-textarea');
 const confList = document.getElementById('confirmation-list');
 const confButton = document.getElementById('confirm-gratitude');
+const subComplete = document.getElementById('submission-complete');
 
 const submitGratitude = () => {
-  document.getElementById('submit-gratitude').addEventListener('click', (e) => {
+  document.getElementById('submit-gratitude').addEventListener('click', () => {
+    subComplete.classList.add('hidden');
+
     if (gratTextarea.value === '') {
       setErrorMessage('Please enter content into the textbox below');
       return;
@@ -32,6 +35,8 @@ const confirmAddGratitude = (event) => {
 
   confContent.classList.add('hidden');
   confList.textContent = '';
+  gratTextarea.value = '';
+  subComplete.classList.remove('hidden');
 
   confButton.removeEventListener(event.type, confirmAddGratitude)
 };
