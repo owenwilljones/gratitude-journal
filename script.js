@@ -2,11 +2,20 @@ const submitGratitude = () => {
   document.getElementById('submit-gratitude').addEventListener('click', (e) => {
     const confContent = document.getElementById('confirmation-content');
     const gratTextarea = document.getElementById('gratitudes-textarea');
-    const gratitudes = gratTextarea.value.split(/\r?\n/);
     const confList = document.getElementById('confirmation-list');
     const confButton = document.getElementById('confirm-gratitude');
+
+    if (gratTextarea.value === '') {
+      setErrorMessage('Please enter content into the textbox below');
+      return;
+    } else {
+      setErrorMessage(false);
+    }
+
+    const gratitudes = gratTextarea.value.split(/\r?\n/);
     
     confContent.classList.remove('hidden');
+    confList.innerText = '';
 
     for (let i = 0; i < gratitudes.length; i += 1) {
       const li = document.createElement('li');
@@ -25,6 +34,18 @@ const confirmAddGratitude = (event) => {
 
   event.target.removeEventListener(event.type, confirmAddGratitude)
 };
+
+const setErrorMessage = (message) => {
+  const errorMessage = document.getElementById('error-message');
+
+  if (message !== false) {
+    errorMessage.classList.remove('hidden');
+    errorMessage.innerText = message;
+  } else {
+    errorMessage.classList.add('hidden');
+    errorMessage.innerText = '';
+  }
+}
 
 window.onload = () => {
   submitGratitude();
