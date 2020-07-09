@@ -7,6 +7,7 @@
   <title>Gratitude</title>
 </head>
 <body>
+  <div id="js-disabled">It looks like javascript isn't running in your web browser. This may be an issue with the app itself, with your own network or your browser is blocking javascript. Unfortunately, this app will not work properly without javascript enabled and working. Please check your browser and network settings or contact the author of this app via the <a href="https://github.com/owenwilljones/gratitude-journal">The app's github page</a></div>
   <main id="content" role="main">
     <h1>Gratitude journalling web app</h1>
     <p>Practice gratitude journalling using this web app. Enter what you're grateful for in the text box below, seperating each gratitude with a new line.</p>
@@ -28,31 +29,13 @@
     </div>
 
     <div class="hidden" id="submission-complete" role="alert">
-      You've successfully added an entry to your gratitude journal
+      You've successfully added an entry to your gratitude journal!
     </div>
 
     <hr>
     
     <h2>Previously recorded gratitudes</h2>
-    <div>
-      <div>
-        <h3>Recorded on 08/07/2020, 4:03PM</h3>
-        <ul>
-          <li>Gratitude 1</li>
-          <li>Gratitude 2</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Recorded on 06/07/2020, 10:45AM</h3>
-        <ul>
-          <li>Gratitude 1</li>
-          <li>Gratitude 2</li>
-          <li>Gratitude 3</li>
-          <li>Gratitude 4</li>
-          <li>Gratitude 5</li>
-        </ul>
-      </div>
-    </div>
+    <div id="gratitudes-list"></div>
   </main>
   <script src="script.js"></script>
 </body>

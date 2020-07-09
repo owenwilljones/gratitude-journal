@@ -1,8 +1,18 @@
+const jsDisabled = document.getElementById('js-disabled');
 const confContent = document.getElementById('confirmation-content');
 const gratTextarea = document.getElementById('gratitudes-textarea');
 const confList = document.getElementById('confirmation-list');
 const confButton = document.getElementById('confirm-gratitude');
 const subComplete = document.getElementById('submission-complete');
+
+const init = () => {
+  hideNoJs();
+  submitGratitude();
+};
+
+const hideNoJs = () => {
+  jsDisabled.classList.add('hidden');
+};
 
 const submitGratitude = () => {
   document.getElementById('submit-gratitude').addEventListener('click', () => {
@@ -82,5 +92,5 @@ const timeFormatting = (num) => {
 };
 
 window.onload = () => {
-  submitGratitude();
+  init();
 };
