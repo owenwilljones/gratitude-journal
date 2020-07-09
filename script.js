@@ -1,4 +1,5 @@
 const jsDisabled = document.getElementById('js-disabled');
+const gratitudeList = document.getElementById('gratitudes-list');
 const confContent = document.getElementById('confirmation-content');
 const gratTextarea = document.getElementById('gratitudes-textarea');
 const confList = document.getElementById('confirmation-list');
@@ -7,11 +8,37 @@ const subComplete = document.getElementById('submission-complete');
 
 const init = () => {
   hideNoJs();
+  renderGratitudeList();
   submitGratitude();
 };
 
 const hideNoJs = () => {
   jsDisabled.classList.add('hidden');
+};
+
+const renderGratitudeList = () => {
+  gratitudeList.textContent = '';
+
+  const gratitudeData = getGratitudeCookie();
+
+  if (gratitudeData.length > 1) {
+    for (let i = 0; i < gratitudeData.length; i += 1) {
+      const gratitudeComponent = document.createElement('div');
+      const h3 = document.createElement('h3');
+      const ul = document.createElement('ul');
+
+      h3.innerText = `Recorded on ${gratitudeData[i].timestamp}`;
+      buildList(gratitudeData[i].gratitudes, ul);
+
+      gratitudeComponent.appendChild(h3);
+      gratitudeComponent.appendChild(ul);
+      gratitudeList.appendChild(gratitudeComponent);
+    }
+  } else {
+    gratitudeList.innerHTML = '<p>You have no previously entered gratitudes. Use the above text box to start entering gratitudes!</p>'
+  }
+
+  gratitudeList.setAttribute('aria-live', 'polite');
 };
 
 const submitGratitude = () => {
@@ -30,11 +57,7 @@ const submitGratitude = () => {
     confContent.classList.remove('hidden');
     confList.innerText = '';
 
-    for (let i = 0; i < gratitudes.length; i += 1) {
-      const li = document.createElement('li');
-      li.innerText = gratitudes[i]
-      confList.appendChild(li);
-    }
+    buildList(gratitudes, confList);
 
     confButton.addEventListener('click', confirmAddGratitude);
   });
@@ -42,6 +65,7 @@ const submitGratitude = () => {
 
 const confirmAddGratitude = (event) => {
   setCookie(gratTextarea.value.split(/\r?\n/));
+  renderGratitudeList();
 
   confContent.classList.add('hidden');
   confList.textContent = '';
@@ -51,12 +75,19 @@ const confirmAddGratitude = (event) => {
   confButton.removeEventListener(event.type, confirmAddGratitude)
 };
 
+const buildList = (data, listNode) => {
+  for (let i = 0; i < data.length; i += 1) {
+    const li = document.createElement('li');
+    li.innerText = data[i]
+    listNode.appendChild(li);
+  }
+};
+
 const setCookie = (gratitudes) => {
   const expiration = new Date();
-  const existingData = getGratitudeCookie();
-  const gratitudeData = existingData === undefined ? [] : JSON.parse(existingData);
+  const gratitudeData = getGratitudeCookie();
 
-  gratitudeData.push({
+  gratitudeData.unshift({
     timestamp: getTimestamp(),
     gratitudes
   });
@@ -67,7 +98,7 @@ const setCookie = (gratitudes) => {
 
 const getGratitudeCookie = () => {
   const cookie = document.cookie.split('; ').find(cookie => cookie.indexOf('gratitudes') !== -1);
-  return cookie !== undefined ? cookie.split('=')[1] : cookie;
+  return cookie !== undefined ? JSON.parse(cookie.split('=')[1]) : [];
 };
 
 const setErrorMessage = (message) => {
