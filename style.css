@@ -125,3 +125,15 @@ li {
   margin-bottom: 30px;
   border-bottom: 1px solid;
 }
+
+.journal-entry__button {
+  background: transparent;
+  color: #0017C7;
+  border: 2px solid;
+  margin-bottom: 20px;
+}
+
+.journal-entry__button:hover {
+  color: #FFF;
+  border: 2px solid;
+}

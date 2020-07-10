@@ -1,5 +1,5 @@
 const jsDisabled = document.getElementById('js-disabled');
-const journalList = document.getElementById('gratitudes-list');
+const journalList = document.getElementById('journal-list');
 const gratTextarea = document.getElementById('gratitudes-textarea');
 const confContent = document.getElementById('confirmation-content');
 const confList = document.getElementById('confirmation-list');
@@ -17,7 +17,7 @@ const hideNoJs = () => {
 };
 
 const renderInitialJournalList = () => {
-  const gratitudeData = getGratitudeCookie();
+  const gratitudeData = getCookies();
 
   journalList.innerHTML = '';
 
@@ -26,13 +26,13 @@ const renderInitialJournalList = () => {
       renderJournalComponent(gratitudeData[i]);
     }
   } else {
-    journalList.innerHTML = '<p>You have no previously entered gratitudes. Use the above text box to start entering gratitudes!</p>'
+    renderNoLogMessage();
   }
 
   journalList.setAttribute('aria-live', 'polite');
 };
 
-const renderJournalComponent = (data) => {
+const renderJournalComponent = data => {
   const parent = document.createElement('div');
 
   parent.classList.add('journal-entry');
@@ -42,16 +42,23 @@ const renderJournalComponent = (data) => {
     <ul>
       ${renderList(data.gratitudes)}
     </ul>
+    <button class="journal-entry__button" data-id="${data.id}">Delete entry</botton>
   `;
 
-  if (journalList. firstChild && journalList.firstChild.nodeName === 'p') {
-    journalList.innerHTML = '';
-  }
-
+  clearNoLogMessage();
   journalList.insertBefore(parent, journalList.firstChild);
+  parent.getElementsByTagName('button')[0].addEventListener('click', deleteCookie);
 };
 
 const renderList = (data) => data.map(datum => `<li>${datum}</li>`).join('');
+
+const renderNoLogMessage = () => journalList.innerHTML = '<p>You have no previously entered gratitudes. Use the above text box to start entering gratitudes!</p>';
+
+const clearNoLogMessage = () => {
+  if (journalList.firstChild && journalList.firstChild.nodeName.toLowerCase() === 'p') {
+    journalList.innerHTML = '';
+  }
+};
 
 const submitGratitude = () => {
   document.getElementById('submit-gratitude').addEventListener('click', () => {
@@ -74,37 +81,67 @@ const submitGratitude = () => {
   });
 };
 
-const confirmAddGratitude = (event) => {
+const confirmAddGratitude = () => {
   const latest = setCookie(sanitizeInput(gratTextarea.value).split(/\r?\n/));
   
   disableConfirmation();
+
+  clearNoLogMessage();
   renderJournalComponent(latest);
   gratTextarea.value = '';
   subComplete.classList.remove('hidden');
+
+  setTimeout(() => subComplete.classList.add('hidden'), 3000)
 };
 
 const disableConfirmation = () => {
   confContent.classList.add('hidden');
   confList.innerHTML = '';
-  confButton.removeEventListener(event.type, confirmAddGratitude);
+  confButton.removeEventListener('click', confirmAddGratitude);
 };
 
-const setCookie = (gratitudes) => {
+const setCookie = gratitudes => {
   const expiration = new Date();
   const newGratitude = {
+    id: getNewCookieId(),
     timestamp: getTimestamp(),
     gratitudes
   };
 
   expiration.setDate(expiration.getDate() + 7);
-  document.cookie = `gratitude ${newGratitude.timestamp}=${JSON.stringify(newGratitude)}; expires=${expiration}`;
+  document.cookie = `gratitude ${newGratitude.id}=${JSON.stringify(newGratitude)}; expires=${expiration}`;
 
   return newGratitude;
 };
 
-const getGratitudeCookie = () => {
+const getCookies = () => {
   const cookies =  document.cookie.split('; ').filter(cookie => cookie.indexOf('gratitude') !== -1);
   return cookies.map(cookie => JSON.parse(cookie.split('=')[1]));
+};
+
+const deleteCookie = event => {
+  const cookie = getCookieById(event.target.dataset.id);
+  const parent = event.target.parentNode;
+  document.cookie = `gratitude ${cookie.id}=null; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+
+  parent.classList.remove('journal-entry');
+  parent.classList.add('message', 'message--success');
+  setTimeout(() => {
+    parent.remove();
+    console.log(journalList.children.length);
+    if (journalList.children.length === 0) {
+      renderNoLogMessage();
+    }
+  }, 3000);
+
+  parent.innerHTML = `Journal entry deleted successfully`;
+};
+
+const getCookieById = id => getCookies().find(cookie => cookie.id.toString() === id.toString());
+
+const getNewCookieId = () => {
+  const cookies = getCookies().map(cookie => cookie.id);
+  return cookies.length > 0 ? Math.max(...cookies) + 1 : 1;
 };
 
 const setErrorMessage = (message) => {
@@ -124,12 +161,10 @@ const getTimestamp = () => {
   return `${now.getDate()}/${timeFormatting(now.getMonth() + 1)}/${now.getFullYear()}, ${now.getHours()}:${timeFormatting(now.getMinutes())}`;
 };
 
-const timeFormatting = (num) => {
+const timeFormatting = num => {
   return num > 10 ? num.toString() : `0${num.toString()}`;
 };
 
-const sanitizeInput = (string) => string.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+const sanitizeInput = string => string.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 
-window.onload = () => {
-  init();
-};
+window.onload = init;
