@@ -17,11 +17,9 @@ const hideNoJs = () => {
 };
 
 const renderInitialJournalList = () => {
-  journalList.innerHTML = '';
-
   const gratitudeData = getGratitudeCookie();
 
-  console.log(gratitudeData);
+  journalList.innerHTML = '';
 
   if (gratitudeData.length > 0) {
     for (let i = 0; i < gratitudeData.length; i += 1) {
@@ -53,10 +51,7 @@ const renderJournalComponent = (data) => {
   journalList.insertBefore(parent, journalList.firstChild);
 };
 
-const renderList = (data) => {
-  console.log(`${data.map(datum => `<li>${datum}</li>`)}`);
-  return data.map(datum => `<li>${datum}</li>`).join('');
-};
+const renderList = (data) => data.map(datum => `<li>${datum}</li>`).join('');
 
 const submitGratitude = () => {
   document.getElementById('submit-gratitude').addEventListener('click', () => {
