@@ -1,3 +1,57 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+
+}
+
+body {
+  background-color: #ABE882;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  color: #3D3D3D;
+  font-size: 18px;
+}
+
+.wrapper {
+  margin: 0 15px;
+  max-width: 970px;
+}
+
+@media (min-width: 1000px) {
+  .wrapper {
+    margin: 0 auto;
+  }
+
+  .two-thirds {
+    width: 66%;
+  }
+}
+
+a {
+  color: #0017C7;
+}
+
+a:hover {
+  color: #6B0099;
+}
+
+hr {
+  border-style: solid;
+  border-width: 1px;
+  margin: 20px 0;
+}
+
 .hidden {
   display: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
 }
