@@ -17,13 +17,15 @@ body {
   max-width: 970px;
 }
 
+@media (min-width: 700px) {
+  .two-thirds {
+    width: 66%;
+  }
+}
+
 @media (min-width: 1000px) {
   .wrapper {
     margin: 0 auto;
-  }
-
-  .two-thirds {
-    width: 66%;
   }
 }
 
@@ -31,14 +33,35 @@ a {
   color: #0017C7;
 }
 
-a:hover {
+a:hover, a:visited {
   color: #6B0099;
+}
+
+button {
+  color: #FFF;
+  background-color: #0017C7;
+  font-size: 1em;
+  padding: 8px 12px;
+  border: 0;
+}
+
+button:hover {
+  background-color: #6B0099;
+  cursor: pointer;
 }
 
 hr {
   border-style: solid;
   border-width: 1px;
   margin: 20px 0;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 5px;
 }
 
 .hidden {

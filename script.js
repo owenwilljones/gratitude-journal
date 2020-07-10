@@ -52,7 +52,8 @@ const renderJournalComponent = (data) => {
 };
 
 const renderList = (data) => {
-  return `${data.map(datum => `<li>${datum}</li>`)}`;
+  console.log(`${data.map(datum => `<li>${datum}</li>`)}`);
+  return data.map(datum => `<li>${datum}</li>`).join('');
 };
 
 const submitGratitude = () => {
@@ -69,11 +70,7 @@ const submitGratitude = () => {
     const gratitudes = gratTextarea.value.split(/\r?\n/);
     
     confContent.classList.remove('hidden');
-    confList.innerHTML = `
-      <ul>
-        ${renderList(gratitudes)}
-      </ul>
-    `;
+    confList.innerHTML = renderList(gratitudes);
 
     confButton.addEventListener('click', confirmAddGratitude);
   });
