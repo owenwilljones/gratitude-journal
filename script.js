@@ -17,11 +17,13 @@ const hideNoJs = () => {
 };
 
 const renderInitialJournalList = () => {
-  journalList.textContent = '';
+  journalList.innerHTML = '';
 
   const gratitudeData = getGratitudeCookie();
 
-  if (gratitudeData.length > 1) {
+  console.log(gratitudeData);
+
+  if (gratitudeData.length > 0) {
     for (let i = 0; i < gratitudeData.length; i += 1) {
       renderJournalComponent(gratitudeData[i]);
     }
@@ -41,6 +43,11 @@ const renderJournalComponent = (data) => {
       ${renderList(data.gratitudes)}
     </ul>
   `;
+
+  if (journalList. firstChild && journalList.firstChild.nodeName === 'p') {
+    journalList.innerHTML = '';
+  }
+
   journalList.insertBefore(parent, journalList.firstChild);
 };
 
@@ -77,7 +84,7 @@ const confirmAddGratitude = (event) => {
   renderJournalComponent(latest);
 
   confContent.classList.add('hidden');
-  confList.textContent = '';
+  confList.innerHTML = '';
   gratTextarea.value = '';
   subComplete.classList.remove('hidden');
 
@@ -86,23 +93,20 @@ const confirmAddGratitude = (event) => {
 
 const setCookie = (gratitudes) => {
   const expiration = new Date();
-  const gratitudeData = getGratitudeCookie();
   const newGratitude = {
     timestamp: getTimestamp(),
     gratitudes
   };
 
-  gratitudeData.push(newGratitude);
-
   expiration.setDate(expiration.getDate() + 7);
-  document.cookie = `gratitudes=${JSON.stringify(gratitudeData)}; expires=${expiration}`;
+  document.cookie = `gratitude ${newGratitude.timestamp}=${JSON.stringify(newGratitude)}; expires=${expiration}`;
 
   return newGratitude;
 };
 
 const getGratitudeCookie = () => {
-  const cookie = document.cookie.split('; ').find(cookie => cookie.indexOf('gratitudes') !== -1);
-  return cookie !== undefined ? JSON.parse(cookie.split('=')[1]) : [];
+  const cookies =  document.cookie.split('; ').filter(cookie => cookie.indexOf('gratitude') !== -1);
+  return cookies.map(cookie => JSON.parse(cookie.split('=')[1]));
 };
 
 const setErrorMessage = (message) => {
