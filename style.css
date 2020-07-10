@@ -98,6 +98,20 @@ li {
   border: 0;
 }
 
+.message {
+  color: #FFF;
+  margin: 20px 0;
+  padding: 10px 15px;
+}
+
+.message--error {
+  background: #B30000;
+}
+
+.message--success {
+  background: #2A652B;
+}
+
 .form-group {
   margin-bottom: 20px;
 }
