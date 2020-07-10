@@ -2,7 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   vertical-align: baseline;
-
+  box-sizing: border-box;
 }
 
 body {
@@ -10,6 +10,7 @@ body {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   color: #3D3D3D;
   font-size: 18px;
+  line-height: 1.25;
 }
 
 .wrapper {
@@ -27,6 +28,10 @@ body {
   .wrapper {
     margin: 0 auto;
   }
+}
+
+h2 {
+  margin: 20px 0;
 }
 
 a {
@@ -48,6 +53,20 @@ button {
 button:hover {
   background-color: #6B0099;
   cursor: pointer;
+}
+
+textarea {
+  width: 100%;
+  border: 2px solid #3D3D3D;
+  font-size: 1em;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  box-sizing: border-box;
+  padding: 5px 10px;
+}
+
+textarea:focus {
+  outline: 3px solid #00EEFF;
+  outline-offset: 0;
 }
 
 hr {
@@ -77,4 +96,8 @@ li {
   margin: -1px;
   padding: 0;
   border: 0;
+}
+
+.form-group {
+  margin-bottom: 20px;
 }
