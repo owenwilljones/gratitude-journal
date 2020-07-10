@@ -59,6 +59,7 @@ const submitGratitude = () => {
 
     if (gratTextarea.value === '') {
       setErrorMessage('Please enter content into the textbox below');
+      disableConfirmation();
       return;
     } else {
       setErrorMessage(false);
@@ -75,14 +76,17 @@ const submitGratitude = () => {
 
 const confirmAddGratitude = (event) => {
   const latest = setCookie(sanitizeInput(gratTextarea.value).split(/\r?\n/));
+  
+  disableConfirmation();
   renderJournalComponent(latest);
-
-  confContent.classList.add('hidden');
-  confList.innerHTML = '';
   gratTextarea.value = '';
   subComplete.classList.remove('hidden');
+};
 
-  confButton.removeEventListener(event.type, confirmAddGratitude)
+const disableConfirmation = () => {
+  confContent.classList.add('hidden');
+  confList.innerHTML = '';
+  confButton.removeEventListener(event.type, confirmAddGratitude);
 };
 
 const setCookie = (gratitudes) => {
