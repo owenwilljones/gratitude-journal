@@ -64,7 +64,7 @@ const submitGratitude = () => {
       setErrorMessage(false);
     }
 
-    const gratitudes = gratTextarea.value.split(/\r?\n/);
+    const gratitudes = sanitizeInput(gratTextarea.value).split(/\r?\n/);
     
     confContent.classList.remove('hidden');
     confList.innerHTML = renderList(gratitudes);
@@ -74,7 +74,7 @@ const submitGratitude = () => {
 };
 
 const confirmAddGratitude = (event) => {
-  const latest = setCookie(gratTextarea.value.split(/\r?\n/));
+  const latest = setCookie(sanitizeInput(gratTextarea.value).split(/\r?\n/));
   renderJournalComponent(latest);
 
   confContent.classList.add('hidden');
@@ -123,6 +123,8 @@ const getTimestamp = () => {
 const timeFormatting = (num) => {
   return num > 10 ? num.toString() : `0${num.toString()}`;
 };
+
+const sanitizeInput = (string) => string.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 
 window.onload = () => {
   init();
