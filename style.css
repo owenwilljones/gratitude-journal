@@ -34,6 +34,10 @@ h2 {
   margin: 20px 0;
 }
 
+h3 {
+  margin: 0 0 10px;
+}
+
 a {
   color: #0017C7;
 }
@@ -77,6 +81,7 @@ hr {
 
 ul {
   padding-left: 20px;
+  margin: 10px 0;
 }
 
 li {
@@ -114,4 +119,9 @@ li {
 
 .form-group {
   margin-bottom: 20px;
+}
+
+.journal-entry {
+  margin-bottom: 30px;
+  border-bottom: 1px solid;
 }

@@ -37,6 +37,8 @@ const renderInitialJournalList = () => {
 const renderJournalComponent = (data) => {
   const parent = document.createElement('div');
 
+  parent.classList.add('journal-entry');
+
   parent.innerHTML = `
     <h3>Recorded on ${data.timestamp}</h3>
     <ul>
