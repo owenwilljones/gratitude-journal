@@ -1,14 +1,14 @@
 const jsDisabled = document.getElementById('js-disabled');
-const gratitudeList = document.getElementById('gratitudes-list');
-const confContent = document.getElementById('confirmation-content');
+const journalList = document.getElementById('gratitudes-list');
 const gratTextarea = document.getElementById('gratitudes-textarea');
+const confContent = document.getElementById('confirmation-content');
 const confList = document.getElementById('confirmation-list');
 const confButton = document.getElementById('confirm-gratitude');
 const subComplete = document.getElementById('submission-complete');
 
 const init = () => {
   hideNoJs();
-  renderGratitudeList();
+  renderInitialJournalList();
   submitGratitude();
 };
 
@@ -16,29 +16,36 @@ const hideNoJs = () => {
   jsDisabled.classList.add('hidden');
 };
 
-const renderGratitudeList = () => {
-  gratitudeList.textContent = '';
+const renderInitialJournalList = () => {
+  journalList.textContent = '';
 
   const gratitudeData = getGratitudeCookie();
 
   if (gratitudeData.length > 1) {
     for (let i = 0; i < gratitudeData.length; i += 1) {
-      const gratitudeComponent = document.createElement('div');
-      const h3 = document.createElement('h3');
-      const ul = document.createElement('ul');
-
-      h3.innerText = `Recorded on ${gratitudeData[i].timestamp}`;
-      buildList(gratitudeData[i].gratitudes, ul);
-
-      gratitudeComponent.appendChild(h3);
-      gratitudeComponent.appendChild(ul);
-      gratitudeList.appendChild(gratitudeComponent);
+      renderJournalComponent(gratitudeData[i]);
     }
   } else {
-    gratitudeList.innerHTML = '<p>You have no previously entered gratitudes. Use the above text box to start entering gratitudes!</p>'
+    journalList.innerHTML = '<p>You have no previously entered gratitudes. Use the above text box to start entering gratitudes!</p>'
   }
 
-  gratitudeList.setAttribute('aria-live', 'polite');
+  journalList.setAttribute('aria-live', 'polite');
+};
+
+const renderJournalComponent = (data) => {
+  const parent = document.createElement('div');
+
+  parent.innerHTML = `
+    <h3>Recorded on ${data.timestamp}</h3>
+    <ul>
+      ${renderList(data.gratitudes)}
+    </ul>
+  `;
+  journalList.insertBefore(parent, journalList.firstChild);
+};
+
+const renderList = (data) => {
+  return `${data.map(datum => `<li>${datum}</li>`)}`;
 };
 
 const submitGratitude = () => {
@@ -55,17 +62,19 @@ const submitGratitude = () => {
     const gratitudes = gratTextarea.value.split(/\r?\n/);
     
     confContent.classList.remove('hidden');
-    confList.innerText = '';
-
-    buildList(gratitudes, confList);
+    confList.innerHTML = `
+      <ul>
+        ${renderList(gratitudes)}
+      </ul>
+    `;
 
     confButton.addEventListener('click', confirmAddGratitude);
   });
 };
 
 const confirmAddGratitude = (event) => {
-  setCookie(gratTextarea.value.split(/\r?\n/));
-  renderGratitudeList();
+  const latest = setCookie(gratTextarea.value.split(/\r?\n/));
+  renderJournalComponent(latest);
 
   confContent.classList.add('hidden');
   confList.textContent = '';
@@ -75,25 +84,20 @@ const confirmAddGratitude = (event) => {
   confButton.removeEventListener(event.type, confirmAddGratitude)
 };
 
-const buildList = (data, listNode) => {
-  for (let i = 0; i < data.length; i += 1) {
-    const li = document.createElement('li');
-    li.innerText = data[i]
-    listNode.appendChild(li);
-  }
-};
-
 const setCookie = (gratitudes) => {
   const expiration = new Date();
   const gratitudeData = getGratitudeCookie();
-
-  gratitudeData.unshift({
+  const newGratitude = {
     timestamp: getTimestamp(),
     gratitudes
-  });
+  };
+
+  gratitudeData.push(newGratitude);
 
   expiration.setDate(expiration.getDate() + 7);
   document.cookie = `gratitudes=${JSON.stringify(gratitudeData)}; expires=${expiration}`;
+
+  return newGratitude;
 };
 
 const getGratitudeCookie = () => {
