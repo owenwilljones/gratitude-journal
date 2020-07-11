@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-  background-color: #ABE882;
+  background-color: #C8F1AC;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   color: #3D3D3D;
   font-size: 18px;
@@ -43,7 +43,7 @@ a {
 }
 
 a:hover, a:visited {
-  color: #6B0099;
+  color: #590080;
 }
 
 button {
@@ -52,11 +52,17 @@ button {
   font-size: 1em;
   padding: 8px 12px;
   border: 0;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
 }
 
 button:hover {
-  background-color: #6B0099;
+  background-color: #590080;
   cursor: pointer;
+}
+
+button:active {
+  border: 0;
 }
 
 textarea {
@@ -68,7 +74,7 @@ textarea {
   padding: 5px 10px;
 }
 
-textarea:focus {
+*:focus {
   outline: 3px solid #00EEFF;
   outline-offset: 0;
 }
@@ -127,13 +133,11 @@ li {
 }
 
 .journal-entry__button {
-  background: transparent;
-  color: #0017C7;
-  border: 2px solid;
-  margin-bottom: 20px;
+  background: #FFF;
+  color: #3D3D3D;
+  margin-bottom: 5px 0 20px;
 }
 
 .journal-entry__button:hover {
-  color: #FFF;
-  border: 2px solid;
+  background: #DEDEDE;
 }

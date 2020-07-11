@@ -122,10 +122,14 @@ const getCookies = () => {
 const deleteCookie = event => {
   const cookie = getCookieById(event.target.dataset.id);
   const parent = event.target.parentNode;
+
   document.cookie = `gratitude ${cookie.id}=null; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
 
+  event.target.removeEventListener('click', deleteCookie);
   parent.classList.remove('journal-entry');
   parent.classList.add('message', 'message--success');
+  parent.innerHTML = `Journal entry deleted successfully`;
+
   setTimeout(() => {
     parent.remove();
     console.log(journalList.children.length);
@@ -133,8 +137,6 @@ const deleteCookie = event => {
       renderNoLogMessage();
     }
   }, 3000);
-
-  parent.innerHTML = `Journal entry deleted successfully`;
 };
 
 const getCookieById = id => getCookies().find(cookie => cookie.id.toString() === id.toString());
