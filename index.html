@@ -16,7 +16,7 @@
       <div class="hidden message message--error" id="error-message" role="alert"></div>
       <label class="visually-hidden" for="gratitudes-textarea">What I'm grateful for</label>
       <div class="form-group">
-        <textarea name="gratitudes-textarea" id="gratitudes-textarea" rows="10" aria-describedby="add-gratitudes"></textarea>
+        <textarea name="gratitudes-textarea" id="gratitudes-textarea" rows="10" aria-describedby="add-gratitudes" data-editing="0"></textarea>
       </div>
       <div class="form-group">
         <button id="submit-gratitude">Submit</button>
@@ -26,14 +26,15 @@
         <p>You have entered the following gratitudes:</p>
         <ul id="confirmation-list"></ul>
         <p>If this is right, click "confirm" below. Otherwise please return back to the text box above and amend your entries.</p>
+        <div id="editing-message" class="hidden">
+          <p>Please note that you are currently editing an existing journal entry. Submitting this entry will update an existing entry as oposed to adding a new one. If you want to add a new entry instead, click the "stop editing" button under the entry being edited in the gratitude log below.</p>
+        </div>
         <div>
           <button id="confirm-gratitude">Confirm</button>
         </div>
       </div>
 
-      <div class="hidden message message--success" id="submission-complete" role="alert">
-        You've successfully added an entry to your gratitude journal!
-      </div>
+      <div class="hidden message message--success" id="conf-message" role="alert"></div>
     </div>
 
     <hr>

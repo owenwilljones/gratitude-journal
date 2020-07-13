@@ -128,14 +128,19 @@ li {
 }
 
 .journal-entry {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  padding: 10px 0 0 10px;
   border-bottom: 1px solid;
+}
+
+.journal-entry:hover {
+  background: #9CE46C;
 }
 
 .journal-entry__button {
   background: #FFF;
   color: #3D3D3D;
-  margin-bottom: 5px 0 20px;
+  margin: 5px 10px 20px 0;
 }
 
 .journal-entry__button:hover {
