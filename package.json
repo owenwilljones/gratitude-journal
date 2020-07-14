@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.1"
+  },
+  "name": "gratitude-journal",
+  "version": "1.0.0",
+  "main": "index.html",
+  "repository": "git@github.com:owenwilljones/gratitude-journal.git",
+  "author": "Owen Jones",
+  "license": "MIT"
+}
