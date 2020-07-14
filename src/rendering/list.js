@@ -1,0 +1,1 @@
+export default data => data.map(datum => `<li>${datum}</li>`).join('');
