@@ -1,4 +1,5 @@
-const jsDisabled = document.getElementById('js-disabled');
+import hideNoJs from './src/hide-no-js';
+
 const journalList = document.getElementById('journal-list');
 const gratTextarea = document.getElementById('gratitudes-textarea');
 const confContent = document.getElementById('confirmation-content');
@@ -12,10 +13,6 @@ const init = () => {
   hideNoJs();
   renderInitialJournalList();
   submitGratitude();
-};
-
-const hideNoJs = () => {
-  jsDisabled.classList.add('hidden');
 };
 
 const renderInitialJournalList = () => {
@@ -56,7 +53,7 @@ const renderJournalComponent = data => {
     parent.getElementsByTagName('button')[1].addEventListener('click', deleteCookie); 
   } else {
     parent.getElementsByTagName('ul')[0].innerHTML = renderList(data.gratitudes);
-    
+
     const editButton = parent.getElementsByTagName('button')[0];
     editButton.dataset.editing = 'false';
     editButton.innerText = 'Edit entry';
