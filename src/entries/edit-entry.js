@@ -2,7 +2,7 @@ import getCookieById from '../cookies/get-cookie-by-id';
 import setConfMessage from '../utils/set-conf-message';
 import disableConfirmation from '../utils/disable-confirmation';
 
-export default (button, gratTextarea, confContent, editingMessage, confList, confButton) => {
+export default (button, gratTextarea, confContent, editingMessage, confList, confButton, confirmAddGratitude) => {
   const parent = button.parentNode;
   const cookie = getCookieById(parent.dataset.id);
 
@@ -19,6 +19,6 @@ export default (button, gratTextarea, confContent, editingMessage, confList, con
 
     button.dataset.editing = 'true';
     button.innerText = 'Stop editing';
-    disableConfirmation(confContent, editingMessage, confList, confButton);
+    disableConfirmation(confContent, editingMessage, confList, confButton, confirmAddGratitude);
   }
 }
