@@ -1,8 +1,19 @@
 import setConfMessage from '../utils/set-conf-message';
-import setErrorMessage from '../utils/set-error-message';
 import disableConfirmation from '../utils/disable-confirmation';
 import sanitizeInput from '../utils/sanitize-input';
 import renderList from '../rendering/list';
+
+const errorMessage = document.getElementById('error-message');
+
+const setErrorMessage = message => {
+  if (message !== false) {
+    errorMessage.classList.remove('hidden');
+    errorMessage.innerText = message;
+  } else {
+    errorMessage.classList.add('hidden');
+    errorMessage.innerText = '';
+  }
+};
 
 export default (gratTextarea, confContent, editingMessage, confList, confButton, confirmAddGratitude) => {
   document.getElementById('submit-gratitude').addEventListener('click', () => {

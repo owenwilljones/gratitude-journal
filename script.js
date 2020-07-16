@@ -1,4 +1,3 @@
-import hideNoJs from './src/utils/hide-no-js';
 import renderInitialJournalList from './src/rendering/initial-journal-list';
 import submitGratitude from './src/form/submit-gratitude';
 import editEntry from './src/entries/edit-entry';
@@ -26,7 +25,9 @@ const confirmAddGratitudeAlias = event => {
 };
 
 window.onload = () => {
-  hideNoJs();
+  // Hide no JS message
+  document.getElementById('js-disabled').classList.add('hidden');
+  
   renderInitialJournalList(journalList, gratTextarea, editEntryAlias, deleteEntryAlias);
   submitGratitude(gratTextarea, confContent, editingMessage, confList, confButton, confirmAddGratitudeAlias);
 };;
