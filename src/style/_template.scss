@@ -1,0 +1,14 @@
+.wrapper {
+  margin: 0 15px;
+  max-width: 970px;
+
+  @include media-query(desktop) {
+    margin: 0 auto;
+  }
+}
+
+.two-thirds {
+  @include media-query(tablet) {
+    width: 66%;
+  }
+}
