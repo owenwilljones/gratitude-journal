@@ -2,20 +2,7 @@
 @import './src/style/base';
 @import './src/style/template';
 @import './src/style/hidden';
-
-.message {
-  color: $colour-white;
-  margin: 20px 0;
-  padding: 10px 15px;
-}
-
-.message--error {
-  background: $colour-error;
-}
-
-.message--success {
-  background: $colour-success;
-}
+@import './src/style/message';
 
 .form-group {
   margin-bottom: 20px;

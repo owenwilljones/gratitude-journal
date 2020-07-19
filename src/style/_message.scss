@@ -1,0 +1,13 @@
+.message {
+  color: $colour-white;
+  margin: 20px 0;
+  padding: 10px 15px;
+  
+  &--error {
+    background: $colour-error;
+  }
+  
+  &--success {
+    background: $colour-success;
+  }
+}
