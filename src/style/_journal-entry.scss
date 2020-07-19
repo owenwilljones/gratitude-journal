@@ -1,0 +1,19 @@
+.journal-entry {
+  margin-bottom: 20px;
+  padding: 10px 0 0 10px;
+  border-bottom: 1px solid;
+  
+  &:hover {
+    background: $colour-background-hover;
+  }
+  
+  &__button {
+  background: $colour-white;
+  color: $colour-text;
+  margin: 5px 10px 20px 0;
+  
+    &:hover {
+      background: $colour-off-white;
+    }
+  }
+}

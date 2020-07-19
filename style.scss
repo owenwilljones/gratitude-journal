@@ -4,23 +4,4 @@
 @import './src/style/hidden';
 @import './src/style/message';
 @import './src/style/form';
-
-.journal-entry {
-  margin-bottom: 20px;
-  padding: 10px 0 0 10px;
-  border-bottom: 1px solid;
-}
-
-.journal-entry:hover {
-  background: $colour-background-hover;
-}
-
-.journal-entry__button {
-  background: $colour-white;
-  color: $colour-text;
-  margin: 5px 10px 20px 0;
-}
-
-.journal-entry__button:hover {
-  background: $colour-off-white;
-}
+@import './src/style/journal-entry';
