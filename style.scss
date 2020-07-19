@@ -1,21 +1,7 @@
 @import './src/style/variables';
 @import './src/style/base';
 @import './src/style/template';
-
-.hidden {
-  display: none;
-}
-
-.visually-hidden {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-}
+@import './src/style/hidden';
 
 .message {
   color: $colour-white;
