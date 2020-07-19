@@ -1,0 +1,78 @@
+*:focus {
+  outline: 3px solid $colour-focus;
+  outline-offset: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $colour-background;
+  font-family: $font-family;
+  color: $colour-text;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+h2 {
+  margin: 20px 0;
+}
+
+h3 {
+  margin: 0 0 10px;
+}
+
+a {
+  color: $colour-primary;
+
+  &:hover, &:visited {
+    color: $colour-secondary;
+  }
+}
+
+button {
+  color: $colour-white;
+  background-color: $colour-primary;
+  font-size: 1em;
+  padding: 8px 12px;
+  border: 0;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+
+  &:hover {
+    background-color: $colour-secondary;
+    cursor: pointer;
+  }
+
+  &:active {
+    border: 0;
+  }
+}
+
+textarea {
+  width: 100%;
+  border: 2px solid $colour-text;
+  font-size: 1em;
+  font-family: $font-family;
+  box-sizing: border-box;
+  padding: 5px 10px;
+}
+
+hr {
+  border-style: solid;
+  border-width: 1px;
+  margin: 20px 0;
+}
+
+ul {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+li {
+  margin-bottom: 5px;
+}
