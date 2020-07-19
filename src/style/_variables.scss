@@ -1,0 +1,29 @@
+// Colours
+$colour-background: #C8F1AC;
+$colour-background-hover: #9CE46C;
+$colour-text: #3D3D3D;
+$colour-primary: #0017C7;
+$colour-secondary: #590080;
+$colour-error: #B30000;
+$colour-success: #2A652B;
+$colour-focus: #00EEFF;
+$colour-white: #FFFFFF;
+$colour-off-white: #DEDEDE;
+
+// Font family
+$font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+
+// Media query mixin
+@mixin media-query($screen) {
+  $screen-size: 0px;
+
+  @if $screen == desktop {
+    $screen-size: 1000px;
+  } @else if $screen == tablet {
+    $screen-size: 700px;
+  }
+
+  @media (min-width: $screen-size) {
+    @content
+  }
+}

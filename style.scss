@@ -1,3 +1,5 @@
+@import './src/style/variables';
+
 html, body {
   margin: 0;
   padding: 0;
@@ -6,9 +8,9 @@ html, body {
 }
 
 body {
-  background-color: #C8F1AC;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-  color: #3D3D3D;
+  background-color: $colour-background;
+  font-family: $font-family;
+  color: $colour-text;
   font-size: 18px;
   line-height: 1.25;
 }
@@ -16,17 +18,15 @@ body {
 .wrapper {
   margin: 0 15px;
   max-width: 970px;
-}
 
-@media (min-width: 700px) {
-  .two-thirds {
-    width: 66%;
+  @include media-query(desktop) {
+    margin: 0 auto;
   }
 }
 
-@media (min-width: 1000px) {
-  .wrapper {
-    margin: 0 auto;
+.two-thirds {
+  @include media-query(tablet) {
+    width: 66%;
   }
 }
 
@@ -39,16 +39,16 @@ h3 {
 }
 
 a {
-  color: #0017C7;
+  color: $colour-primary;
 }
 
 a:hover, a:visited {
-  color: #590080;
+  color: $colour-secondary;
 }
 
 button {
-  color: #FFF;
-  background-color: #0017C7;
+  color: $colour-white;
+  background-color: $colour-primary;
   font-size: 1em;
   padding: 8px 12px;
   border: 0;
@@ -57,7 +57,7 @@ button {
 }
 
 button:hover {
-  background-color: #590080;
+  background-color: $colour-secondary;
   cursor: pointer;
 }
 
@@ -67,15 +67,15 @@ button:active {
 
 textarea {
   width: 100%;
-  border: 2px solid #3D3D3D;
+  border: 2px solid $colour-text;
   font-size: 1em;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-family: $font-family;
   box-sizing: border-box;
   padding: 5px 10px;
 }
 
 *:focus {
-  outline: 3px solid #00EEFF;
+  outline: 3px solid $colour-focus;
   outline-offset: 0;
 }
 
@@ -110,17 +110,17 @@ li {
 }
 
 .message {
-  color: #FFF;
+  color: $colour-white;
   margin: 20px 0;
   padding: 10px 15px;
 }
 
 .message--error {
-  background: #B30000;
+  background: $colour-error;
 }
 
 .message--success {
-  background: #2A652B;
+  background: $colour-success;
 }
 
 .form-group {
@@ -134,15 +134,15 @@ li {
 }
 
 .journal-entry:hover {
-  background: #9CE46C;
+  background: $colour-background-hover;
 }
 
 .journal-entry__button {
-  background: #FFF;
-  color: #3D3D3D;
+  background: $colour-white;
+  color: $colour-text;
   margin: 5px 10px 20px 0;
 }
 
 .journal-entry__button:hover {
-  background: #DEDEDE;
+  background: $colour-off-white;
 }
