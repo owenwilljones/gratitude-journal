@@ -32,7 +32,7 @@ export default (gratTextarea, confContent, editingMessage, confList, confButton,
     confContent.classList.remove('hidden');
     confList.innerHTML = renderList(gratitudes);
 
-    if (gratTextarea.dataset.editing !== 0) {
+    if (gratTextarea.dataset.editing !== "0") {
       editingMessage.classList.remove('hidden');
     }
 
