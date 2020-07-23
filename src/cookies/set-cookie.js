@@ -23,7 +23,7 @@ export default (gratitudes, gratTextarea) => {
   };
 
   expiration.setDate(expiration.getDate() + 7);
-  document.cookie = `gratitude ${cookie.id}=${JSON.stringify(cookie)}; expires=${expiration}`;
+  document.cookie = `gratitude ${cookie.id}=${encodeURIComponent(JSON.stringify(cookie))}; expires=${expiration}`;
 
   return cookie;
 };
