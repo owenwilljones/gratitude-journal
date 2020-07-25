@@ -26,7 +26,7 @@ const confirmAddGratitudeAlias = event => {
 
 window.onload = () => {
   // Hide no JS message
-  document.getElementById('js-disabled').classList.add('hidden');
+  document.getElementById('js-disabled').innerHTML = '';
   
   renderInitialJournalList(journalList, gratTextarea, editEntryAlias, deleteEntryAlias);
   submitGratitude(gratTextarea, confContent, editingMessage, confList, confButton, confirmAddGratitudeAlias);
