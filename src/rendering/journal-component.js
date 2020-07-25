@@ -1,13 +1,13 @@
 import renderList from './list';
 import {clear as clearNoLogMessage} from './no-log-message';
 
-export default (data, gratTextarea, journalList, editEntry, deleteEntry) => {
-  const parent = gratTextarea.dataset.editing !== "0" ? document.querySelector(`[data-id="${gratTextarea.dataset.editing}"]`) : document.createElement('div');
+export default (data, gratitudesField, journalList, editEntry, deleteEntry) => {
+  const parent = gratitudesField.dataset.editing !== "0" ? document.querySelector(`[data-id="${gratitudesField.dataset.editing}"]`) : document.createElement('div');
 
   parent.classList.add('journal-entry');
   parent.dataset.id = data.id;
 
-  if (gratTextarea.dataset.editing === "0") {
+  if (gratitudesField.dataset.editing === "0") {
     parent.innerHTML = `
       <h3>Last recorded on ${data.timestamp}</h3>
       <ul>

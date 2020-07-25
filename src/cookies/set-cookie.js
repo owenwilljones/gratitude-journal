@@ -14,10 +14,10 @@ const timeFormatting = num => {
   return num > 10 ? num.toString() : `0${num.toString()}`;
 };
 
-export default (gratitudes, gratTextarea) => {
+export default (gratitudes, gratitudesField) => {
   const expiration = new Date();
   const cookie = {
-    id: gratTextarea.dataset.editing !== "0" ? gratTextarea.dataset.editing : getNewCookieId(),
+    id: gratitudesField.dataset.editing !== "0" ? gratitudesField.dataset.editing : getNewCookieId(),
     timestamp: getTimestamp(),
     gratitudes
   };

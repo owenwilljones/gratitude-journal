@@ -21,9 +21,10 @@
       <p>Use this web app to practice gratitude journalling.</p>
       <p id="add-gratitudes">Enter what you're grateful for in the text box, seperating each gratitude with a new line.</p>
       <div class="hidden message message--error" id="error-message" aria-live="polite"></div>
-      <label class="visually-hidden" for="gratitudes-textarea">What I'm grateful for</label>
+      
       <div class="form-group">
-        <textarea name="gratitudes-textarea" id="gratitudes-textarea" rows="10" aria-describedby="add-gratitudes" data-editing="0"></textarea>
+        <label class="visually-hidden" for="field-gratitudes">What I'm grateful for</label>
+        <textarea name="field-gratitudes" id="field-gratitudes" rows="10" aria-describedby="add-gratitudes" data-editing="0"></textarea>
       </div>
       <div class="form-group">
         <button id="submit-gratitude">Submit</button>

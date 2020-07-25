@@ -15,11 +15,11 @@ const setErrorMessage = message => {
   }
 };
 
-export default (gratTextarea, confContent, editingMessage, confList, confButton, confirmAddGratitude) => {
+export default (gratitudesField, confContent, editingMessage, confList, confButton, confirmAddGratitude) => {
   document.getElementById('submit-gratitude').addEventListener('click', () => {
     setConfMessage(false);
 
-    if (gratTextarea.value === '') {
+    if (gratitudesField.value === '') {
       setErrorMessage('Please enter content into the textbox below');
       disableConfirmation(confContent, editingMessage, confList, confButton);
       return;
@@ -27,12 +27,12 @@ export default (gratTextarea, confContent, editingMessage, confList, confButton,
       setErrorMessage(false);
     }
 
-    const gratitudes = sanitizeInput(gratTextarea.value).split(/\r?\n/);
+    const gratitudes = sanitizeInput(gratitudesField.value).split(/\r?\n/);
     
     confContent.classList.remove('hidden');
     confList.innerHTML = renderList(gratitudes);
 
-    if (gratTextarea.dataset.editing !== "0") {
+    if (gratitudesField.dataset.editing !== "0") {
       editingMessage.classList.remove('hidden');
     }
 

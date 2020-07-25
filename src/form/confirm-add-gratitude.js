@@ -5,14 +5,14 @@ import disableConfirmation from '../utils/disable-confirmation';
 import {clear as clearNoLogMessage} from '../rendering/no-log-message';
 import setConfMessage from '../utils/set-conf-message';
 
-export default (gratTextarea, journalList, editEntry, deleteEntry, confContent, editingMessage, confList, confButton, confirmAddGratitude) => {
-  const latest = setCookie(sanitizeInput(gratTextarea.value).split(/\r?\n/), gratTextarea);
+export default (gratitudesField, journalList, editEntry, deleteEntry, confContent, editingMessage, confList, confButton, confirmAddGratitude) => {
+  const latest = setCookie(sanitizeInput(gratitudesField.value).split(/\r?\n/), gratitudesField);
   let message = '';
   
-  renderJournalComponent(latest, gratTextarea, journalList, editEntry, deleteEntry);
+  renderJournalComponent(latest, gratitudesField, journalList, editEntry, deleteEntry);
 
-  if (gratTextarea.dataset.editing !== "0") {
-    gratTextarea.dataset.editing = 0;
+  if (gratitudesField.dataset.editing !== "0") {
+    gratitudesField.dataset.editing = 0;
     message = `You've successfully updated one of your old entries!`;
   } else {
     message = `You've successfully added an entry to your gratitude journal!`;
@@ -20,7 +20,7 @@ export default (gratTextarea, journalList, editEntry, deleteEntry, confContent, 
 
   disableConfirmation(confContent, editingMessage, confList, confButton, confirmAddGratitude);
   clearNoLogMessage(journalList);
-  gratTextarea.value = '';
+  gratitudesField.value = '';
 
   setConfMessage(message);
 }
