@@ -15,40 +15,51 @@
 </head>
 <body>
   <div id="js-disabled">It looks like javascript isn't running in your web browser. This may be an issue with the app itself, with your own network or your browser is blocking javascript. Unfortunately, this app will not work properly without javascript enabled and working. Please check your browser and network settings or contact the author of this app via the <a href="https://github.com/owenwilljones/gratitude-journal">The app's github page</a></div>
-  <main id="content" class="wrapper" role="main">
-    <div class="two-thirds">
-      <h1>Gratitude Journal</h1>
-      <p>Use this web app to practice gratitude journalling.</p>
-      <p id="add-gratitudes">Enter what you're grateful for in the text box, seperating each gratitude with a new line.</p>
-      <div class="hidden message message--error" id="error-message" aria-live="polite"></div>
-      
-      <div class="form-group">
-        <label class="visually-hidden" for="field-gratitudes">What I'm grateful for</label>
-        <textarea name="field-gratitudes" id="field-gratitudes" rows="10" aria-describedby="add-gratitudes" data-editing="0"></textarea>
-      </div>
-      <div class="form-group">
-        <button id="submit-gratitude">Submit</button>
-      </div>
-
-      <div id="confirmation-content" class="hidden" aria-live="polite">
-        <p>You have entered the following gratitudes:</p>
-        <ul id="confirmation-list"></ul>
-        <p>If this is right, click "confirm" below. Otherwise please return back to the text box above and amend your entries.</p>
-        <div id="editing-message" class="hidden">
-          <p>Please note that you are currently editing an existing journal entry. Submitting this entry will update an existing entry as oposed to adding a new one. If you want to add a new entry instead, click the "stop editing" button under the entry being edited in the gratitude log below.</p>
+  <main id="content" role="main">
+    <div class="wrapper">
+      <div class="two-thirds">
+        <h1>Gratitude Journal</h1>
+        <p>Use this web app to practice gratitude journalling.</p>
+        <p id="add-gratitudes">Enter what you're grateful for in the text box, seperating each gratitude with a new line.</p>
+        <p>You can additionally use the fields below to specify a date and time that your gratitude applies to. They will default to the curret date and time if you leave them blank.</p>
+        
+        <div class="hidden message message--error" id="error-message" aria-live="polite"></div>
+        <div class="form-group">
+          <label for="field-date">Date</label>
+          <input type="date" id="field-date">
         </div>
-        <div>
-          <button id="confirm-gratitude">Confirm</button>
+        <div class="form-group">
+          <label for="field-time">Time</label>
+          <input type="time" id="field-time">
         </div>
+        <div class="form-group">
+          <label class="visually-hidden" for="field-gratitudes">What I'm grateful for</label>
+          <textarea name="field-gratitudes" id="field-gratitudes" rows="10" aria-describedby="add-gratitudes" data-editing="0"></textarea>
+        </div>
+        <div class="form-group">
+          <button id="submit-gratitude">Submit</button>
+        </div>
+  
+        <div id="confirmation-content" class="hidden" aria-live="polite">
+          <p>You have entered the following gratitudes:</p>
+          <ul id="confirmation-list"></ul>
+          <p>If this is right, click "confirm" below. Otherwise please return back to the text box above and amend your entries.</p>
+          <div id="editing-message" class="hidden">
+            <p>Please note that you are currently editing an existing journal entry. Submitting this entry will update an existing entry as oposed to adding a new one. If you want to add a new entry instead, click the "stop editing" button under the entry being edited in the gratitude log below.</p>
+          </div>
+          <div>
+            <button id="confirm-gratitude">Confirm</button>
+          </div>
+        </div>
+  
+        <div class="hidden message message--success" id="conf-message" aria-live="polite"></div>
       </div>
-
-      <div class="hidden message message--success" id="conf-message" aria-live="polite"></div>
-    </div>
-
-    <hr>
-    <div class="two-thirds">
-      <h2>Previously recorded gratitudes</h2>
-      <div id="journal-list"></div>
+  
+      <hr>
+      <div class="two-thirds">
+        <h2>Previously recorded gratitudes</h2>
+        <div id="journal-list"></div>
+      </div>
     </div>
   </main>
   <script src="script.js"></script>

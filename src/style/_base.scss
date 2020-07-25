@@ -34,34 +34,6 @@ a {
   }
 }
 
-button {
-  color: $colour-white;
-  background-color: $colour-primary;
-  font-size: 1em;
-  padding: 8px 12px;
-  border: 0;
-  border-right: 2px solid;
-  border-bottom: 2px solid;
-
-  &:hover {
-    background-color: $colour-secondary;
-    cursor: pointer;
-  }
-
-  &:active {
-    border: 0;
-  }
-}
-
-textarea {
-  width: 100%;
-  border: 2px solid $colour-text;
-  font-size: 1em;
-  font-family: $font-family;
-  box-sizing: border-box;
-  padding: 5px 10px;
-}
-
 hr {
   border-style: solid;
   border-width: 1px;

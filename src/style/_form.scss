@@ -1,3 +1,54 @@
 .form-group {
   margin-bottom: 20px;
 }
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 700;
+
+  @include media-query(tablet) {
+    display: inline;
+    margin: 0 0 0 0;
+  }
+}
+
+input, textarea {
+  display: block;
+  width: 100%;
+  border: 2px solid $colour-text;
+  font-size: 1em;
+  font-family: $font-family;
+  box-sizing: border-box;
+  padding: 5px 10px;
+}
+
+input {
+  @include media-query(mobile) {
+    width: 66%;
+  }
+
+  @include media-query(tablet) {
+    width: 33%;
+    display: inline;
+  }
+}
+
+button {
+  color: $colour-white;
+  background-color: $colour-primary;
+  font-size: 1em;
+  padding: 8px 12px;
+  border: 0;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+
+  &:hover {
+    background-color: $colour-secondary;
+    cursor: pointer;
+  }
+
+  &:active {
+    border: 0;
+  }
+}
