@@ -1,16 +1,16 @@
 .form-group {
   margin-bottom: 20px;
+
+  &__hint {
+    color: $colour-text-secondary;
+    margin-bottom: 10px;
+  }
 }
 
 label {
   display: block;
   margin-bottom: 5px;
   font-weight: 700;
-
-  @include media-query(tablet) {
-    display: inline;
-    margin: 0 0 0 0;
-  }
 }
 
 input, textarea {
@@ -25,12 +25,7 @@ input, textarea {
 
 input {
   @include media-query(mobile) {
-    width: 66%;
-  }
-
-  @include media-query(tablet) {
-    width: 33%;
-    display: inline;
+    width: 50%;
   }
 }
 

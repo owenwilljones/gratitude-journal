@@ -5,20 +5,28 @@ const getNewCookieId = () => {
   return cookies.length > 0 ? Math.max(...cookies) + 1 : 1;
 };
 
-const getTimestamp = () => {
-  const now = new Date();
-  return `${now.getDate()}/${timeFormatting(now.getMonth() + 1)}/${now.getFullYear()}, ${now.getHours()}:${timeFormatting(now.getMinutes())}`;
+const getTimestamp = (dateField, timeField) => {
+  const timestamp = new Date();
+
+  timestamp.setTime(Date.parse(
+    `${dateField.value !== '' ? dateField.value : `${timestamp.getFullYear()}-${timeFormatting(timestamp.getMonth())}-${timeFormatting(timestamp.getDate())}`}T${
+      timeField.value !== '' ? timeField.value : `${timeFormatting(timestamp.getHours())}:${timeFormatting(timestamp.getMinutes())}`}Z`
+  ));
+  
+  return `${timeFormatting(timestamp.getDate())}/${
+            timeFormatting(timestamp.getMonth() + 1)}/${
+            timestamp.getFullYear()}, ${
+            timeFormatting(timestamp.getHours() - 1)}:${
+            timeFormatting(timestamp.getMinutes())}`;
 };
 
-const timeFormatting = num => {
-  return num > 10 ? num.toString() : `0${num.toString()}`;
-};
+const timeFormatting = num => num > 10 ? num.toString() : `0${num.toString()}`;
 
-export default (gratitudes, gratitudesField) => {
+export default (gratitudes, gratitudesField, dateField, timeField) => {
   const expiration = new Date();
   const cookie = {
     id: gratitudesField.dataset.editing !== "0" ? gratitudesField.dataset.editing : getNewCookieId(),
-    timestamp: getTimestamp(),
+    timestamp: getTimestamp(dateField, timeField),
     gratitudes
   };
 

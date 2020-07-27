@@ -26,11 +26,13 @@
         <div class="hidden message message--error" id="error-message" aria-live="polite"></div>
         <div class="form-group">
           <label for="field-date">Date</label>
-          <input type="date" id="field-date">
+          <div class="form-group__hint" id="gratitude-date">Please either use the date picker in the input field below (if available) or use the date format "YYYY-MM-DD"</div>
+          <input type="date" id="field-date" aria-describedby="gratitude-date">
         </div>
         <div class="form-group">
           <label for="field-time">Time</label>
-          <input type="time" id="field-time">
+          <div class="form-group__hint" id="gratitude-time">Please either use the time picker in the input field below (if available) or use the time format "HH:MM" (24 hour)</div>
+          <input type="time" id="field-time" aria-describedby="gratitude-time">
         </div>
         <div class="form-group">
           <label class="visually-hidden" for="field-gratitudes">What I'm grateful for</label>
