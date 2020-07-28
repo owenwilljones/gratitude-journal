@@ -22,6 +22,7 @@ export default (data, gratitudesField, journalList, editEntry, deleteEntry) => {
     parent.getElementsByTagName('button')[0].addEventListener('click', editEntry);
     parent.getElementsByTagName('button')[1].addEventListener('click', deleteEntry); 
   } else {
+    parent.getElementsByTagName('h3')[0].innerHTML = `Last recorded on ${data.timestamp}`;
     parent.getElementsByTagName('ul')[0].innerHTML = renderList(data.gratitudes);
 
     const editButton = parent.getElementsByTagName('button')[0];

@@ -11,11 +11,12 @@ const gratitudesField = document.getElementById('field-gratitudes');
 const confContent = document.getElementById('confirmation-content');
 const editingMessage = document.getElementById('editing-message');
 const confList = document.getElementById('confirmation-list');
+const confTimestamps = document.getElementById('confirmation-timestamp');
 const confButton = document.getElementById('confirm-gratitude');
 
 //Alias events for event listeners
 const editEntryAlias = event => {
-  editEntry(event.target, gratitudesField, confContent, editingMessage, confList, confButton, dateField, timeField, confirmAddGratitudeAlias);
+  editEntry(event.target, gratitudesField, confContent, editingMessage, confList, confTimestamps, confButton, dateField, timeField, confirmAddGratitudeAlias);
 };
 
 const deleteEntryAlias = event => {
@@ -23,7 +24,7 @@ const deleteEntryAlias = event => {
 };
 
 const confirmAddGratitudeAlias = event => {
-  confirmAddGratitude(gratitudesField, dateField, timeField, journalList, editEntryAlias, deleteEntryAlias, confContent, editingMessage, confList, confButton, confirmAddGratitudeAlias);
+  confirmAddGratitude(gratitudesField, dateField, timeField, journalList, editEntryAlias, deleteEntryAlias, confContent, editingMessage, confList, confTimestamps, confButton, confirmAddGratitudeAlias);
 };
 
 window.onload = () => {
@@ -31,5 +32,5 @@ window.onload = () => {
   document.getElementById('js-disabled').innerHTML = '';
   
   renderInitialJournalList(journalList, gratitudesField, editEntryAlias, deleteEntryAlias);
-  submitGratitude(gratitudesField, dateField, timeField, confContent, editingMessage, confList, confButton, confirmAddGratitudeAlias);
+  submitGratitude(gratitudesField, dateField, timeField, confContent, editingMessage, confList, confTimestamps, confButton, confirmAddGratitudeAlias);
 };;

@@ -5,7 +5,7 @@ import disableConfirmation from '../utils/disable-confirmation';
 import {clear as clearNoLogMessage} from '../rendering/no-log-message';
 import setConfMessage from '../utils/set-conf-message';
 
-export default (gratitudesField, dateField, timeField, journalList, editEntry, deleteEntry, confContent, editingMessage, confList, confButton, confirmAddGratitude) => {
+export default (gratitudesField, dateField, timeField, journalList, editEntry, deleteEntry, confContent, editingMessage, confList, confTimestamps, confButton, confirmAddGratitude) => {
   const latest = setCookie(sanitizeInput(gratitudesField.value).split(/\r?\n/), gratitudesField, dateField, timeField);
   let message = '';
   
@@ -18,9 +18,11 @@ export default (gratitudesField, dateField, timeField, journalList, editEntry, d
     message = `You've successfully added an entry to your gratitude journal!`;
   }
 
-  disableConfirmation(confContent, editingMessage, confList, confButton, dateField, timeField, confirmAddGratitude);
+  disableConfirmation(confContent, editingMessage, confList, confTimestamps, confButton, confirmAddGratitude);
   clearNoLogMessage(journalList);
   gratitudesField.value = '';
+  dateField.value = '';
+  timeField.value = '';
 
   setConfMessage(message);
 }

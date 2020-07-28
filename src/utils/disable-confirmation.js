@@ -1,8 +1,7 @@
-export default (confContent, editingMessage, confList, confButton, dateField, timeField, confirmAddGratitude) => {
+export default (confContent, editingMessage, confList, confTimestamps, confButton, confirmAddGratitude) => {
   confContent.classList.add('hidden');
   editingMessage.classList.add('hidden');
   confList.innerHTML = '';
-  dateField.value = '';
-  timeField.value = '';
+  confTimestamps.innerHTML = '';
   confButton.removeEventListener('click', confirmAddGratitude);
 }
