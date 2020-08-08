@@ -31,6 +31,11 @@ window.onload = () => {
   // Hide no JS message
   document.getElementById('js-disabled').innerHTML = '';
   
-  renderInitialJournalList(journalList, gratitudesField, editEntryAlias, deleteEntryAlias);
-  submitGratitude(gratitudesField, dateField, timeField, confContent, editingMessage, confList, confTimestamps, confButton, confirmAddGratitudeAlias);
-};;
+  if (journalList && gratitudesField) {
+    renderInitialJournalList(journalList, gratitudesField, editEntryAlias, deleteEntryAlias);
+  }
+
+  if (gratitudesField && dateField && timeField && confContent && editingMessage && confList && confTimestamps && confButton) {
+    submitGratitude(gratitudesField, dateField, timeField, confContent, editingMessage, confList, confTimestamps, confButton, confirmAddGratitudeAlias);
+  }
+};
