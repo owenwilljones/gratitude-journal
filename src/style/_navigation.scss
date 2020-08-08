@@ -1,0 +1,18 @@
+.navigation {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  &__item {
+    display: inline-block;
+    margin: 0 10px 0 0;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
